@@ -99,6 +99,19 @@ with col2:
         st.subheader("Efficiency Visualization")
         st.progress(efficiency)
         
+        # Export results
+        st.download_button(
+            label="Download results as CSV",
+            data=(
+                f"metric,value\n"
+                f"T_hot_K,{t_hot:.2f}\n"
+                f"T_cold_K,{t_cold:.2f}\n"
+                f"Efficiency_percent,{efficiency_percent:.2f}\n"
+            ),
+            file_name="carnot_results.csv",
+            mime="text/csv"
+        )
+
         # Additional info
         with st.expander("💡 What does this mean?"):
             st.write(f"""
