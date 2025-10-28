@@ -1,0 +1,1 @@
+# carnot-efficiency-calculator
