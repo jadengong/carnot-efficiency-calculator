@@ -71,7 +71,7 @@ with col1:
         
         t_cold_celsius = st.slider(
             "Cold Reservoir Temperature (°C)",
-            min_value=-50,
+            min_value=0,
             max_value=100,
             value=25,
             step=5
@@ -269,14 +269,42 @@ with tab2:
 with tab3:
     st.markdown("""
     **Creator's Note**
-
-    This app was built to make the Second Law feel tangible: with interactive
-    temperatures, a P–V sketch of the ideal Carnot cycle, and an energy flow
-    view that shows why perfect engines are impossible. Have fun exploring how
-    raising the hot reservoir or lowering the cold one changes the limits!
+    
+    **The Physics Concept: Carnot Efficiency and the Second Law of Thermodynamics**
+    
+    This calculator demonstrates and visualizes the **Carnot efficiency**, a fundamental limit in thermodynamics that 
+    governs the maximum possible efficiency of any heat engine. The principle comes from the Second Law 
+    of Thermodynamics, which states that entropy, or the measure of disorder in a system, can never decrease 
+    in an isolated process. This law creates an absolute upper bound on how efficiently we can convert 
+    heat into useful work.
+    
+    **How This Project Demonstrates It:**
+    
+    This interactive tool brings the Carnot efficiency formula **η = 1 - (T_cold / T_hot)** to life by 
+    allowing you to manipulate the two key variables: the temperatures of the hot and cold reservoirs. 
+    Through the P–V diagram, you can visualize the idealized Carnot cycle: a four-step reversible process 
+    consisting of isothermal expansion, adiabatic expansion, isothermal compression, and adiabatic 
+    compression. The energy flow diagram then shows how even this theoretically perfect engine must reject 
+    a portion of its input heat as waste, regardless of engineering improvements. This impossibility of 
+    100% efficiency is a fundamental constraint imposed by the universe itself.
+    
+    
+    **Real-World Connection:**
+    
+    The Carnot efficiency has profound implications for our energy infrastructure. For example, a typical 
+    car engine operates at only about 25% efficiency, while its Carnot limit might be around 35–40%. 
+    Modern combined-cycle power plants, the most efficient fossil fuel systems, achieve about 55–60% 
+    actual efficiency, approaching about 70% of their Carnot limit—but no engine can ever exceed it. 
+    This reality drives research into higher operating temperatures (like in gas turbines) and lower 
+    rejection temperatures (like in combined heat and power systems), as these are the only ways to 
+    improve theoretical efficiency bounds. Understanding these limits helps engineers make informed 
+    decisions about energy systems, recognizing when further optimization approaches diminishing returns 
+    due to fundamental physics rather than technical limitations.
+    
+    Have fun exploring how raising the hot reservoir or lowering the cold one changes these absolute limits!
     """)
 
-# Real-world context (moved to bottom)
+# Real-world context 
 st.divider()
 st.subheader("🌍 Real-World Context")
 
