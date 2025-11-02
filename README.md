@@ -23,14 +23,29 @@ streamlit run app.py
 
 The app will open in your browser at `http://localhost:8501`
 
-## Features (In Progress)
+## Features
 
+### Core Functionality
 - ✅ Interactive temperature sliders (Kelvin/Celsius)
-- ✅ Real-time efficiency calculation
-- ✅ Real-world engine comparisons
-- ⏳ P-V diagram visualization
-- ⏳ Energy flow diagrams
-- ⏳ Creator's Note section
+- ✅ Real-time efficiency calculation with live metrics
+- ✅ Color-coded efficiency interpretation (Excellent/Good/Moderate/Low ranges)
+- ✅ Real-world engine comparisons with visual progress bars
+- ✅ CSV export functionality
+
+### Enhanced Visualizations
+- ✅ **P-V Diagram**: Interactive visualization with process annotations
+  - Shows all four Carnot cycle processes with labels
+  - Highlights heat absorption and rejection
+  - Educational arrows explaining each step
+- ✅ **Energy Flow Diagram**: Sankey diagram showing energy conversion
+  - Visual representation of useful work vs waste heat
+  - Adjustable energy input with helpful tooltips
+- ✅ **Creator's Note**: Comprehensive explanation of the Second Law
+
+### Real-World Context
+- ✅ Detailed comparison tables for car engines, power plants, and diesel engines
+- ✅ Shows Carnot limit vs actual efficiency percentages
+- ✅ Displays how close real engines are to theoretical maximum
 
 ## Physics Concept
 

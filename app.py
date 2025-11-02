@@ -103,6 +103,16 @@ with col2:
         st.subheader("Efficiency Visualization")
         st.progress(efficiency)
         
+        # Add color-coded efficiency interpretation
+        if efficiency >= 0.7:
+            st.success("🔥 Excellent efficiency range (≥70%) - requires very high temperatures")
+        elif efficiency >= 0.5:
+            st.info("⚡ Good efficiency range (50-70%) - typical for modern power plants")
+        elif efficiency >= 0.3:
+            st.warning("⚠️ Moderate efficiency range (30-50%) - typical for car engines")
+        else:
+            st.error("📉 Low efficiency range (<30%) - practical limitations")
+        
         # Visualizations moved to full-width section below
         
         # Export results
@@ -213,8 +223,18 @@ with tab1:
             yaxis_title="Pressure (relative units)",
             template="plotly_white",
             showlegend=True,
-            height=420,
+            height=450,
+            hovermode='closest'
         )
+        
+        # Add annotations for each process
+        annotations = [
+            dict(x=V1*1.05, y=P1, text="1→2: Heat absorbed (Q_in)", showarrow=True, arrowhead=2, ax=0, ay=-30),
+            dict(x=V2*1.05, y=P2*0.85, text="2→3: Adiabatic expansion", showarrow=True, arrowhead=2, ax=0, ay=-20),
+            dict(x=V3*0.95, y=P3*1.1, text="3→4: Heat rejected (Q_out)", showarrow=True, arrowhead=2, ax=0, ay=30),
+            dict(x=V4*0.95, y=P4, text="4→1: Adiabatic compression", showarrow=True, arrowhead=2, ax=0, ay=20)
+        ]
+        fig.update_layout(annotations=annotations)
 
         st.plotly_chart(fig, use_container_width=True)
 
@@ -228,12 +248,14 @@ with tab2:
     try:
         col_e1, col_e2 = st.columns([1, 2])
         with col_e1:
+            st.markdown("##### Input Configuration")
             total_energy_in = st.number_input(
                 "Total heat input Q_hot (J)",
                 min_value=0.0,
                 value=1000.0,
                 step=50.0,
-                format="%.2f"
+                format="%.2f",
+                help="Total thermal energy input to the engine"
             )
 
         with col_e2:
@@ -309,9 +331,24 @@ st.divider()
 st.subheader("🌍 Real-World Context")
 
 real_world_data = {
-    "Car Engine (Gasoline)": {"hot": celsius_to_kelvin(600), "cold": celsius_to_kelvin(60), "actual_eff": 0.25},
-    "Power Plant (Steam)": {"hot": celsius_to_kelvin(700), "cold": celsius_to_kelvin(40), "actual_eff": 0.35},
-    "Diesel Engine": {"hot": celsius_to_kelvin(650), "cold": celsius_to_kelvin(80), "actual_eff": 0.30},
+    "Car Engine (Gasoline)": {
+        "hot": celsius_to_kelvin(600), 
+        "cold": celsius_to_kelvin(60), 
+        "actual_eff": 0.25,
+        "icon": "🚗"
+    },
+    "Power Plant (Steam)": {
+        "hot": celsius_to_kelvin(700), 
+        "cold": celsius_to_kelvin(40), 
+        "actual_eff": 0.35,
+        "icon": "🏭"
+    },
+    "Diesel Engine": {
+        "hot": celsius_to_kelvin(650), 
+        "cold": celsius_to_kelvin(80), 
+        "actual_eff": 0.30,
+        "icon": "🚛"
+    },
 }
 
 for engine_name, data in real_world_data.items():
@@ -319,19 +356,25 @@ for engine_name, data in real_world_data.items():
         carnot_eff = calculate_carnot_efficiency(data["hot"], data["cold"])
         actual_eff = data["actual_eff"]
         gap = carnot_eff - actual_eff
+        percent_of_carnot = (actual_eff / carnot_eff) * 100 if carnot_eff > 0 else 0
         
-        col_a, col_b, col_c = st.columns(3)
-        with col_a:
-            st.write(f"**{engine_name}**")
-        with col_b:
-            st.write(f"Carnot: {carnot_eff*100:.1f}% | Actual: {actual_eff*100:.1f}%")
-        with col_c:
-            st.write(f"Gap: {gap*100:.1f}% due to real-world losses")
+        with st.container():
+            col_a, col_b, col_c, col_d = st.columns([2, 3, 2, 1.5])
+            with col_a:
+                st.markdown(f"### {data['icon']}")
+                st.write(f"**{engine_name}**")
+                st.caption(f"T_hot: {data['hot']:.0f} K | T_cold: {data['cold']:.0f} K")
+            with col_b:
+                st.write(f"**Carnot Limit:** {carnot_eff*100:.1f}%")
+                st.write(f"**Actual Efficiency:** {actual_eff*100:.1f}%")
+                st.write(f"**Achieving:** {percent_of_carnot:.1f}% of theoretical max")
+            with col_c:
+                st.progress(actual_eff / carnot_eff if carnot_eff > 0 else 0)
+                st.caption(f"{gap*100:.1f}% gap from ideal")
+            with col_d:
+                st.write("")  # spacer
+            st.divider()
     except ValueError:
         continue
 
-st.caption("""
-Note: Actual engine efficiencies are always lower than Carnot efficiency due to friction, 
-heat losses, and other irreversibilities in real engines.
-""")
-
+st.info("💡 **Note:** Actual engine efficiencies are always lower than Carnot efficiency due to friction, heat losses, incomplete combustion, and other irreversibilities in real engines.")
