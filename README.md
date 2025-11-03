@@ -52,6 +52,10 @@ The app will open in your browser at `http://localhost:8501`
 The Carnot efficiency demonstrates why 100% efficient engines are physically impossible. 
 Even an ideal engine must reject waste heat to the cold reservoir, limited by the Second Law of Thermodynamics.
 
+## Summary
+
+This app provides an intuitive, interactive way to explore the fundamental limits of heat engine efficiency, making complex thermodynamic concepts accessible through real-time calculations and beautiful visualizations.
+
 ---
 
 **Assignment**: Physics 202 - Creative Application Project
