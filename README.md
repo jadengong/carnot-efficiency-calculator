@@ -1,4 +1,4 @@
-# 🔥 Carnot Efficiency Calculator
+# Carnot Efficiency Calculator
 
 An interactive web application demonstrating the Second Law of Thermodynamics through the Carnot cycle, for my PHYC-202 physics project!
 
