@@ -22,7 +22,7 @@ st.set_page_config(
 )
 
 # Title and header
-st.title("🔥 Carnot Efficiency Calculator")
+st.title("Carnot Efficiency Calculator")
 st.subheader("Understanding the Maximum Possible Engine Efficiency")
 
 # Add a brief explanation
@@ -35,7 +35,7 @@ efficiency that any heat engine can achieve. It's given by: **η = 1 - (T_cold /
 col1, col2 = st.columns(2)
 
 with col1:
-    st.header("🌡️ Temperature Controls")
+    st.header("Temperature Controls")
     
     # Temperature input
     temp_choice = st.radio(
@@ -81,7 +81,7 @@ with col1:
         t_cold = celsius_to_kelvin(t_cold_celsius)
 
 with col2:
-    st.header("📊 Results")
+    st.header("Results")
     
     try:
         # Calculate efficiency
@@ -156,7 +156,7 @@ with st.expander("💡 What does this mean?"):
 
 # Visualizations & Extras (full-width below the two columns)
 st.divider()
-st.subheader("🧪 Visualizations & Extras")
+st.subheader("Visualizations & Extras")
 
 tab1, tab2, tab3 = st.tabs(["P–V Diagram", "Energy Flow", "Creator's Note"])
 
@@ -328,7 +328,7 @@ with tab3:
 
 # Real-world context 
 st.divider()
-st.subheader("🌍 Real-World Context")
+st.subheader("Real-World Context")
 
 real_world_data = {
     "Car Engine (Gasoline)": {
