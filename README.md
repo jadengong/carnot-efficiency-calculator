@@ -23,6 +23,56 @@ streamlit run app.py
 
 The app will open in your browser at `http://localhost:8501`
 
+## Deployment
+
+### Deploy to Streamlit Community Cloud (Free)
+
+This app is ready to be deployed on [Streamlit Community Cloud](https://share.streamlit.io/), which provides free hosting for public Streamlit apps.
+
+#### Prerequisites
+- A GitHub account
+- Your project pushed to a public GitHub repository
+
+#### Deployment Steps
+
+1. **Push your code to GitHub:**
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit: Carnot Efficiency Calculator"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+   git push -u origin main
+   ```
+
+2. **Sign up for Streamlit Community Cloud:**
+   - Go to [share.streamlit.io](https://share.streamlit.io/)
+   - Sign in with your GitHub account
+   - Authorize Streamlit to access your repositories
+
+3. **Deploy your app:**
+   - Click "New app" in the Streamlit Community Cloud dashboard
+   - Select your repository from the dropdown
+   - Choose the branch (usually `main` or `master`)
+   - Set the main file path to `app.py`
+   - Click "Deploy"
+
+4. **Your app will be live!**
+   - Streamlit Community Cloud will automatically build and deploy your app
+   - You'll get a URL like: `https://YOUR_APP_NAME.streamlit.app`
+   - The app will automatically redeploy whenever you push changes to your GitHub repository
+
+#### Updating Your Deployed App
+
+Simply push changes to your GitHub repository, and Streamlit Community Cloud will automatically redeploy:
+```bash
+git add .
+git commit -m "Update app"
+git push
+```
+
+The deployment typically takes 1-2 minutes to complete.
+
 ## Features
 
 ### Core Functionality
