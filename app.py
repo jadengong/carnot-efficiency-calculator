@@ -17,7 +17,7 @@ from carnot_calculator import (
 # Page configuration
 st.set_page_config(
     page_title="Carnot Efficiency Calculator",
-    page_icon="🔥",
+    page_icon="",
     layout="wide"
 )
 
